@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="RecordForm">
+  <apiVersion>45.0</apiVersion>
+  <isExposed>true</isExposed>
+  <targets>
+    <target>lightning__AppPage</target>
+    <target>lightning__RecordPage</target>
+    <target>lightning__HomePage</target>
+  </targets>
+  <targetConfigs>
+    <targetConfig targets="lightning__RecordPage">
+    <property name="objectApiName" type="String" />
+    </targetConfig>
+    <targetConfig targets="lightning__HomePage">
+        <property name="objectApiName" type="String" default="Account"/>
+        <property name="field1" type="String" default="Name"/>
+        <property name="field2" type="String" default="Revenue"/>
+        <property name="field3" type="String" default="Industry"/>
+        </targetConfig>
+</targetConfigs>
+
+</LightningComponentBundle>
