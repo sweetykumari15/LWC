@@ -39,6 +39,7 @@ export default class BarcodeScannerExample extends LightningElement {
                     // Here, we just display the scanned value in the UI
                     this.scannedBarcode = decodeURIComponent(result.value);
                     this.dispatchEvent(
+                        
                         new ShowToastEvent({
                             title: 'Successful Scan',
                             message: 'Barcode scanned successfully.',
