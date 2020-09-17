@@ -1,0 +1,59 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/bikeCard": [
+                "bikeCard/bikeCard.js"
+            ],
+            "c/childComp": [
+                "childComp/childComp.js"
+            ],
+            "c/customLookupCmp": [
+                "customLookupCmp/customLookupCmp.js"
+            ],
+            "c/detail": [
+                "detail/detail.js"
+            ],
+            "c/helloWorld": [
+                "helloWorld/helloWorld.js"
+            ],
+            "c/lWCWirePropertyToGetAccount": [
+                "lWCWirePropertyToGetAccount/lWCWirePropertyToGetAccount.js"
+            ],
+            "c/list": [
+                "list/list.js"
+            ],
+            "c/parentComponent": [
+                "parentComponent/parentComponent.js"
+            ],
+            "c/reUasablePicklist": [
+                "reUasablePicklist/reUasablePicklist.js"
+            ],
+            "c/recordList": [
+                "recordList/recordList.js"
+            ],
+            "c/searchComponent": [
+                "searchComponent/searchComponent.js"
+            ],
+            "c/selector": [
+                "selector/selector.js"
+            ],
+            "c/tile": [
+                "tile/tile.js"
+            ],
+            "c/myFirstWebComponent": [
+                "myFirstWebComponent/myFirstWebComponent.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

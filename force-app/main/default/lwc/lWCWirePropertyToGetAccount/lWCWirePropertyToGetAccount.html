@@ -1,0 +1,142 @@
+<template>
+    <lightning:card title="LWC Table" >
+        <div class="slds-m-around-medium">
+            <div class="slds-align_absolute-left" >
+                <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+                <lightning-button 
+                    label={toggleSaveLabel} 
+                    icon-name="utility:save" 
+                    slot="actions"
+                    onclick={handleSave}>
+                </lightning-button>
+                <lightning-button 
+                    label="Cancel" 
+                    icon-name="utility:cancel" 
+                    slot="actions"
+                    onclick={handleCancel}>
+                </lightning-button>
+
+            </div>
+            
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                <template if:true={loadAccounts} >
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                            <div class="slds-truncate" title="Account Name">Account Name</div>
+                            </th>
+                            <th class="" scope="col">
+                            <div class="slds-truncate" title="Close Date">Type</div>
+                            </th>
+                            <th class="" scope="col">
+                            <div class="slds-truncate" title="Stage">Phone</div>
+                            </th>
+                            <th class="" scope="col">
+                            <div class="slds-truncate" title="Rating">Rating</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                        </tr>
+                    </thead>
+                </template>
+               
+                <tbody>
+                    <template if:true={myList} >
+                        <template for:each={myList} for:item="acc" for:index="indexVar">
+                            {acc.indexVar}  
+                            <tr class="slds-hint-parent"   key={keyIndex}  ondblclick={onDoubleClickEdit}>
+                                <td data-label="Account Name">
+                                    <template if:false={isEdited}>
+                                        <p  data-id="accountName" key={acc.Id}>{acc.Name}</p>
+                                       <!--<template for:each={acc.Contacts} for:item="contact">
+                                            <li key={contact.Id}>{contact.Name}
+                                            </li>
+                                        </template>-->
+                                       </template>
+                                    <template if:true={isEdited}>
+                                        <lightning-input key={acc.indexVar}  access-key={indexVar}  id={indexVar}  data-id={acc.Key} name="accName" label="Name" value={acc.Name} variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                                      <!--<template for:each={acc.Contacts} for:item="contact">
+                                            <li key={contact.Id}>{contact.Name}
+                                            </li>
+                                        </template>-->
+                                    </template>
+                                    
+                                </td>
+                                <td data-label="Type">
+                                    <template if:false={isEdited}>
+                                        <div  data-id="accountType" class="slds-truncate" title="4/14/2015">{acc.Type}</div>
+                                    </template>
+                                    <template if:true={isEdited}>
+                                       <!-- <lightning-input key={acc.key} data-id={acc.Key} name="input2" label="Type" value={acc.Type} variant="label-hidden" ></lightning-input>-->
+                                       <div class="slds-select_container">
+                                        <select class="slds-select" data-id="select-Type" name="accType"  onchange={onValueSelection} >
+                                            <template if:false={acc.Type}>
+                                                <option value="">--None--</option>
+                                            </template>
+                                            <template if:true={acc.Type}>
+                                                <option value="">{acc.Type}</option>
+                                            </template>
+                                              <!--iterate all picklist values from wrapper list using for:each loop-->
+                                                <template for:each={typeValue.data} for:item="picklistItem">
+                                                    <option key={picklistItem.Name} value={picklistItem.Name}>
+                                                     {picklistItem.Label}
+                                                   </option>
+                                              </template>
+                                        </select>
+                                      </div>
+                                    </template>
+                                
+                                </td>
+                                <td data-label="Phone"  title="Prospecting">
+                                    <template if:false={isEdited}>
+                                        <div data-id="accountName" class="slds-truncate">{acc.Phone}</div>
+                                    </template>
+                                    <template if:true={isEdited}>
+                                        <lightning-input key={acc.key} data-id={acc.Key} name="accPhone" label="Phone" value={acc.Phone} variant="label-hidden" ></lightning-input>
+                                        <!--<div data-id="accountName" class="slds-truncate">{acc.Phone}</div>-->
+                                    </template>
+                                
+                                </td>
+                                <td data-label="Rating" title="Rating">
+                                    <template if:false={isEdited}>
+                                        <div data-id="accountRating" class="slds-truncate" >{acc.Rating}</div>
+                                    </template>
+                                    <template if:true={isEdited}>
+                                        <!--<lightning-input key={acc.key} data-id={acc.Key} name="input4" label="Rating" value={acc.Rating} variant="label-hidden" ></lightning-input>-->
+                                        <div class="slds-select_container">
+                                            <select class="slds-select"  name="accPhone" data-id="select-Rating" onchange={onValueSelection}>
+                                                <template if:false={acc.Rating}>
+                                                <option value="">--None--</option>
+                                            </template>
+                                            <template if:true={acc.Rating}>
+                                                <option value="">{acc.Rating}</option>
+                                            </template>
+                                                  <!--iterate all picklist values from wrapper list using for:each loop-->
+                                                    <template for:each={ratingValue.data} for:item="picklistItem">
+                                                       <option key={picklistItem.Name} value={picklistItem.Name}>
+                                                         {picklistItem.Label}
+                                                       </option>
+                                                  </template>
+                                            </select>
+                                          </div>
+                                    </template>
+                                </td>
+                                <td class="slds-size_1-of-10" data-label="Action">
+                                    <a name={indexVar}  data-id={acc.Id} onclick={remove}>
+                                            <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
+                                    </a>
+                                    <!--<a name={indexVar}  data-id={acc.Id} onclick={editAccount}>
+                                        <lightning-icon icon-name="utility:edit" alternative-text="edit"  size="x-small"></lightning-icon>
+                                    </a>-->
+                                </td>
+                                
+                            </tr>
+                            </template>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning:card>
+</template>
+

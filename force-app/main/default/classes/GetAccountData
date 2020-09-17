@@ -1,0 +1,6 @@
+public with sharing class GetAccountData{
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getAccountData(){
+        return[SELECT Id, Name, Type, Rating, Phone FROM Account];
+    }
+}
