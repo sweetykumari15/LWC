@@ -193,8 +193,7 @@ export default class ImperativEx extends LightningElement {
             this.dataArray = result;
             let tempArray = [];
             this.dataArray.forEach(function (element) {
-                var option=
-                {
+                var option= {
                     label:element.Label,
                     value:element.Name
                 };
